@@ -77,8 +77,16 @@ $books = $stmt->fetchAll();
 
 <div class="top-links">
     <a href="book_create.php">➕ Add New Book</a>
-    <a href="login.php">Login</a>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <span>Welcome, <?= e($_SESSION['username']); ?></span>
+        <a href="logout.php">Logout</a>
+    <?php else: ?>
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+    <?php endif; ?>
 </div>
+
 
 <h2>Search Books</h2>
 

@@ -91,8 +91,11 @@ $books = $stmt->fetchAll();
 <h2>Search Books</h2>
 
 <form method="get" action="" class="search-form">
-    <input type="text" name="title" placeholder="Title contains..."
-           value="<?= e($titleSearch); ?>">
+    <div class="search-wrapper">
+        <input type="text" name="title" placeholder="Title contains..."
+               value="<?= e($titleSearch); ?>">
+        <div id="title-suggestions" class="suggestions"></div>
+    </div>
 
     <input type="text" name="genre" placeholder="Genre..."
            value="<?= e($genreSearch); ?>">
@@ -103,7 +106,6 @@ $books = $stmt->fetchAll();
     <button type="submit">Search</button>
     <a href="index.php">Reset</a>
 </form>
-
 <h2>All Books</h2>
 
 <?php if (count($books) === 0): ?>
@@ -138,6 +140,8 @@ $books = $stmt->fetchAll();
 
 </table>
 <?php endif; ?>
+<script src="../assets/js/ajax.js"></script>
+
 
 </body>
 </html>

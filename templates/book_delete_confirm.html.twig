@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delete Book{% endblock %}
+
+{% block content %}
+
+<a href="index.php" class="back-link">&larr; Back to Book List</a>
+
+<h1>Delete Book</h1>
+
+<p>Are you sure you want to delete this book?</p>
+
+<table style="border-collapse:collapse; margin-top:15px;">
+    <tr>
+        <th style="border:1px solid #aaa; padding:8px;">Field</th>
+        <th style="border:1px solid #aaa; padding:8px;">Value</th>
+    </tr>
+    <tr>
+        <td style="border:1px solid #aaa; padding:8px;">ID</td>
+        <td style="border:1px solid #aaa; padding:8px;">{{ book.id }}</td>
+    </tr>
+    <tr>
+        <td style="border:1px solid #aaa; padding:8px;">Title</td>
+        <td style="border:1px solid #aaa; padding:8px;">{{ book.title|e }}</td>
+    </tr>
+    <tr>
+        <td style="border:1px solid #aaa; padding:8px;">Author</td>
+        <td style="border:1px solid #aaa; padding:8px;">{{ book.author|e }}</td>
+    </tr>
+    <tr>
+        <td style="border:1px solid #aaa; padding:8px;">Genre</td>
+        <td style="border:1px solid #aaa; padding:8px;">{{ book.genre|e }}</td>
+    </tr>
+</table>
+
+<form method="post" action="" style="margin-top:20px;">
+    <button type="submit"
+            style="padding:10px 20px; background:red; color:white; border:none;">
+        Yes, Delete this Book
+    </button>
+</form>
+
+{% endblock %}

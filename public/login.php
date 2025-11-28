@@ -3,7 +3,6 @@ require_once "../config/config.php";
 
 $errors = [];
 $username = "";
-$password = "";
 $captcha_input = "";
 
 $message = "";
@@ -18,7 +17,10 @@ function generate_captcha() {
     return [$a, $b];
 }
 
-list($number1, $number2) = generate_captcha();
+// DO NOT generate CAPTCHA yet for POST – only do it for GET
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    list($number1, $number2) = generate_captcha();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
@@ -46,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-
             header("Location: index.php");
             exit;
         } else {
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // ONLY NOW generate a new CAPTCHA for next attempt
     list($number1, $number2) = generate_captcha();
 }
 

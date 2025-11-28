@@ -13,7 +13,10 @@ function generate_captcha() {
     return [$a, $b];
 }
 
-list($number1, $number2) = generate_captcha();
+// Generate CAPTCHA ONLY for GET requests
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    list($number1, $number2) = generate_captcha();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
@@ -65,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // After validating POST, generate new CAPTCHA for next attempt
     list($number1, $number2) = generate_captcha();
 }
 

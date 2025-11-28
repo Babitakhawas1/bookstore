@@ -1,0 +1,214 @@
+/* Global layout */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+    background: #f7f7f9;
+    color: #222;
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+}
+
+main {
+    margin-top: 10px;
+}
+
+/* Navbar / top links */
+.top-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.top-links a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #007bff;
+    color: #007bff;
+    font-size: 0.9rem;
+}
+
+.top-links a:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+/* Buttons (generic) */
+button,
+.btn {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+button:hover,
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #fff;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+th {
+    background: #f0f0f0;
+}
+
+/* Make tables horizontally scrollable on small screens */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Forms */
+form {
+    max-width: 450px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Messages */
+.errors {
+    background: #ffe0e0;
+    border: 1px solid #ff9090;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.message,
+.flash-success {
+    background: #e0ffe0;
+    border: 1px solid #90ff90;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* Search form */
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.search-form input {
+    padding: 6px;
+}
+
+/* Autocomplete suggestions */
+.suggestions {
+    border: 1px solid #aaa;
+    max-width: 250px;
+    background: #fff;
+    position: absolute;
+    z-index: 10;
+    display: none;
+}
+
+.suggestion-item {
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f0f0f0;
+}
+
+/* Links */
+a {
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .top-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    th,
+    td {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-form input,
+    .search-form button,
+    .search-form a {
+        width: 100%;
+    }
+
+    .top-links a {
+        width: 100%;
+        text-align: center;
+    }
+}

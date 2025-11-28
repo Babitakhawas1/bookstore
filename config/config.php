@@ -1,5 +1,4 @@
 <?php
-// Start secure session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,11 +10,9 @@ $dbname = "bookstore_db";
 $username = "root";
 $password = "";
 
-// Build DSN
 $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
 
 try {
-    // Create PDO and store in $pdo (GLOBAL)
     $pdo = new PDO(
         $dsn,
         $username,
@@ -27,11 +24,18 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // If connection fails, stop everything with clear error
     die("Database connection failed: " . $e->getMessage());
 }
 
-// Simple helper to escape output (XSS protection)
 function e($string) {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
+
+// Twig setup
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => false,
+    'debug' => true
+]);

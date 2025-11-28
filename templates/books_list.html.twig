@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookstore - All Books{% endblock %}
+
+{% block content %}
+
+<h2>Search Books</h2>
+
+<form method="get" action="" class="search-form">
+    <div class="search-wrapper" style="position: relative; display: inline-block;">
+        <input type="text" name="title" placeholder="Title contains..."
+               value="{{ titleSearch|e }}">
+        <div id="title-suggestions"
+             class="suggestions"
+             style="border: 1px solid #aaa; max-width: 250px; background: #fff; position: absolute; z-index: 10; display: none;"></div>
+    </div>
+
+    <input type="text" name="genre" placeholder="Genre..."
+           value="{{ genreSearch|e }}">
+
+    <input type="number" name="year" placeholder="Year"
+           value="{{ yearSearch|e }}">
+
+    <button type="submit">Search</button>
+    <a href="index.php">Reset</a>
+</form>
+
+<h2>All Books</h2>
+
+{% if books is empty %}
+    <p>No books found.</p>
+{% else %}
+    <table style="width: 80%; border-collapse: collapse; margin-top: 20px;">
+        <tr>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">ID</th>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">Title</th>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">Author</th>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">Genre</th>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">Year</th>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">Price</th>
+            <th style="border: 1px solid #aaa; padding: 10px; background: #f2f2f2;">Actions</th>
+        </tr>
+
+        {% for b in books %}
+            <tr>
+                <td style="border: 1px solid #aaa; padding: 10px;">{{ b.id }}</td>
+                <td style="border: 1px solid #aaa; padding: 10px;">{{ b.title|e }}</td>
+                <td style="border: 1px solid #aaa; padding: 10px;">{{ b.author|e }}</td>
+                <td style="border: 1px solid #aaa; padding: 10px;">{{ b.genre|e }}</td>
+                <td style="border: 1px solid #aaa; padding: 10px;">{{ b.publication_year }}</td>
+                <td style="border: 1px solid #aaa; padding: 10px;">
+                    {% if b.price is not null %}
+                        ${{ b.price }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td style="border: 1px solid #aaa; padding: 10px;">
+                    <a href="book_edit.php?id={{ b.id }}">Edit</a> |
+                    <a href="book_delete.php?id={{ b.id }}"
+                       onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}

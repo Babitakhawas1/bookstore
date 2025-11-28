@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<a href="index.php" class="back-link">&larr; Back to Book List</a>
+
+<h1>Login</h1>
+
+{% if message %}
+    <div style="background:#e0ffe0; border:1px solid #90ff90; padding:10px; margin-bottom:15px;">
+        {{ message|e }}
+    </div>
+{% endif %}
+
+{% if errors %}
+    <div style="background:#ffe0e0; border:1px solid #ff9090; padding:10px; margin-bottom:15px;">
+        <strong>Please fix the following errors:</strong>
+        <ul>
+            {% for err in errors %}
+                <li>{{ err|e }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<form method="post" action="" style="max-width:400px;">
+    <label>Username *</label>
+    <input type="text" name="username" required
+           value="{{ username|default('')|e }}"
+           style="width:100%; padding:8px;">
+
+    <label style="margin-top:10px;">Password *</label>
+    <input type="password" name="password" required
+           style="width:100%; padding:8px;">
+
+    <label style="margin-top:10px;">Solve to verify:</label>
+    <p><strong>{{ number1 }} + {{ number2 }} = ?</strong></p>
+    <input type="number" name="captcha" required
+           value="{{ captcha_input|default('')|e }}"
+           style="width:100%; padding:8px;">
+
+    <button type="submit" style="margin-top:15px; padding:8px 15px;">Login</button>
+</form>
+
+<p>Don’t have an account? <a href="register.php">Register here</a>.</p>
+
+{% endblock %}

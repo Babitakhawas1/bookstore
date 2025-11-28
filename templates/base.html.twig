@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bookstore{% endblock %}</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+<header>
+    <h1>📚 Bookstore</h1>
+    {% include 'partials/navbar.html.twig' %}
+    <hr>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer style="margin-top: 40px; font-size: 0.9em; color: #666;">
+    <hr>
+    <p>Simple PHP &amp; Twig Bookstore</p>
+</footer>
+
+<script src="../assets/js/ajax.js"></script>
+</body>
+</html>

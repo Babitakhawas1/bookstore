@@ -1,0 +1,11 @@
+<div class="top-links">
+    <a href="book_create.php">➕ Add New Book</a>
+
+    {% if user_id %}
+        <span style="margin-left: 10px;">Welcome, {{ username|e }}</span>
+        <a href="logout.php" style="margin-left: 10px;">Logout</a>
+    {% else %}
+        <a href="login.php" style="margin-left: 10px;">Login</a>
+        <a href="register.php" style="margin-left: 10px;">Register</a>
+    {% endif %}
+</div>
